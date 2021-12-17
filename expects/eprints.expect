@@ -1,0 +1,124 @@
+#!/usr/bin/expect
+
+# Intialize repo creation
+spawn ./bin/epadmin create zero
+
+# Setting Archive ID
+expect "Archive ID?"
+send "testrepo\n"
+
+# Leave vital settings as default
+expect "Configure vital settings?"
+send "yes\n"
+
+# Set Hostname for the repo
+expect "Hostname?"
+send "testrepo.eprints.com\n"
+
+# Leave Port 80 as default
+expect "Webserver Port?"
+send "80\n"
+
+# Left alias as blank
+expect "Alias?"
+send "\n"
+
+# Left path as root /
+expect "Path ?"
+send "\n"
+
+# Left HTTPS config
+expect "HTTPS Hostname?"
+send "\n"
+# Admin Mail
+expect "Administrator Email?"
+send "admin@mail.com\n"
+
+# Leave Repo name as Test Repo
+expect "Archive Name?"
+send "\n"
+
+# Allow to write settings
+expect "Write these core settings?"
+send "\n"
+
+# Allow to configure DB
+expect "Configure database?"
+send "\n"
+
+# Leave DB name as default
+expect "Database Name?"
+send "\n"
+
+# Leave DB Host as localhost
+expect "MySQL Host?"
+send "\n"
+
+# Leave DB Port as default
+expect "MySQL Port?"
+send "\n"
+
+# Leave DB Socket as default
+expect "MySQL Socket?"
+send "\n"
+
+# Left DB user as default
+expect "Database User?"
+send "\n"
+
+# Set DB User Password
+expect "Database Password?"
+send "\n"
+
+# Leave DBEngine as default
+expect "Database Engine?"
+send "\n"
+
+# Allow to write DB Settings
+expect "Write these database settings?"
+send "\n"
+
+# Allow to create DB for the Repo
+expect "Create database?"
+send "\n"
+
+# Providing root user creds for performing DB related Stuffs
+expect "Database Superuser Username?"
+send "\n"
+
+expect "Database Superuser Password?"
+send "root\n"
+
+# Allow to create tables 
+expect "Create database tables?"
+send "\n"
+
+# Allow Initial user creation
+expect "Create an initial user?"
+send "\n"
+
+# Set username
+expect "Enter a username?"
+send "\n"
+
+# Ask to create admin user
+expect "Select a user type?"
+send "admin\n"
+
+# Set user password
+expect "Enter Password?"
+send "admin\n"
+
+# Set admin email
+expect "Email?"
+send "admin@testrepo.com"
+
+# Allow system to create static pages
+expect "Do you want to build the static web pages?"
+send "\n"
+
+# Update Config files for apache
+expect "Do you want to update the apache config files?"
+send "\n"
+
+expect eof

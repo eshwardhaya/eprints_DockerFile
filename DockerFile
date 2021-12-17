@@ -1,0 +1,40 @@
+# Taking base as latest ubuntu LTS
+FROM ubuntu/mysql
+
+# Create ENV
+ENV MYSQL_ROOT_PASSWORD=root
+
+# Creating Work Directory
+WORKDIR /usr/eprints_src
+
+# copy everything from here
+COPY . .
+
+# Refreshing apt data
+RUN apt-get update
+
+
+# Installing expect package
+RUN apt-get install expect wget gnupg gnupg2 gnupg1 -y
+
+# Apache2 Installation 
+RUN expect ./expects/apache2.expect
+
+# Adding Eprints Repo
+RUN echo "deb http://deb.eprints-hosting.org/3.4/stable/ ./" > /etc/apt/sources.list.d/eprints.list 
+
+# Adding apt-key for eprints
+RUN wget -O - http://deb.eprints-hosting.org/keyFile | apt-key add -	
+
+# Refreshing apt repo to include eprints 
+RUN apt-get update
+
+# Install Eprints
+RUN apt-get install eprints -y
+
+# Switching to user eprints
+RUN su - eprints -c "cd ~ && expect /usr/eprints_src/expects/eprints.expect"
+
+
+# Expose at 80 as apache listens 
+EXPOSE 80

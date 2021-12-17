@@ -1,0 +1,6 @@
+#!/usr/bin/expect
+
+spawn apt-get install apache2 -y
+# expect "Geographic area:"
+# send "9\n"
+expect eof
